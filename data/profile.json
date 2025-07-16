@@ -1,0 +1,105 @@
+{
+  "profile": {
+    "name": "Chiheb Nabil",
+    "avatar": "https://media.licdn.com/dms/image/v2/D4E03AQH8gamAwC4btw/profile-displayphoto-shrink_800_800/B4EZZTHVedHEAc-/0/1745151154634?e=1758153600&v=beta&t=i1TDxFuml1MZwd9PGLTfUSt45-TNMtci166GhlrwX44",
+    "bio": "Full-stack developer, indie maker, and mentor helping aspiring devs and founders ship meaningful software and learn faster 🚀",
+    "badges": ["Full Stack Developer", "Mentor", "Indie Maker", "PHP • Vue • Node.js"]
+  },
+  "linkGroups": [
+    {
+      "title": "Projects & Products",
+      "links": [
+        {
+          "title": "GitMatcher",
+          "description": "AI-powered GitHub talent discovery. Find real devs by real commits.",
+          "url": "https://gitmatcher.com",
+          "icon": "Users",
+          "featured": true
+        },
+        {
+          "title": "MyDevMentor",
+          "description": "1:1 mentorship to help junior developers level up and land jobs.",
+          "url": "https://mydevmentor.com",
+          "icon": "GraduationCap",
+          "featured": true
+        },
+        {
+          "title": "next-lovable",
+          "description": "CLI tool to convert Lovable React projects into full-stack Next.js apps.",
+          "url": "https://nextlovable.com",
+          "icon": "Zap"
+        },
+        {
+          "title": "Claude UI",
+          "description": "Experimenting with LLMs and UI tools",
+          "url": "https://claudeui.com",
+          "icon": "Bot"
+        }
+      ]
+    },
+    {
+      "title": "Published Work",
+      "links": [
+        {
+          "title": "The Art of Crafting AI Prompts",
+          "description": "Beginner-Friendly Prompt Engineering Guide on Amazon",
+          "url": "https://www.amazon.fr/Art-Crafting-Prompts-Empowering-Conversations/dp/B0CCCX8MQB",
+          "icon": "BookOpen"
+        },
+        {
+          "title": "openai-api-mock",
+          "description": "NPM package for mocking OpenAI API",
+          "url": "https://www.npmjs.com/package/openai-api-mock",
+          "icon": "Package"
+        }
+      ]
+    },
+    {
+      "title": "Development",
+      "links": [
+        {
+          "title": "GitHub Profile",
+          "description": "Open source projects and contributions",
+          "url": "https://github.com/chihebnabil",
+          "icon": "Github"
+        }
+      ]
+    },
+    {
+      "title": "Mentorship",
+      "links": [
+        {
+          "title": "Book a Free Call",
+          "description": "Get mentorship to level up your dev career",
+          "url": "#",
+          "icon": "Calendar"
+        }
+      ]
+    }
+  ],
+  "socialLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/chihebnabil",
+      "icon": "Github"
+    },
+    {
+      "name": "X (Twitter)",
+      "url": "https://x.com/NabilChiheb",
+      "icon": "Twitter"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/nabil-chiheb/",
+      "icon": "Linkedin"
+    },
+    {
+      "name": "Email",
+      "url": "mailto:chiheb.design@gmail.com",
+      "icon": "Mail"
+    }
+  ],
+  "footer": {
+    "text": "Made with ❤️ using Next.js • Helping devs ship meaningful software"
+  }
+}
