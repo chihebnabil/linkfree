@@ -122,8 +122,8 @@ export default function ProfilePage() {
               onClick={async (e) => {
                 e.preventDefault()
                 // Fire tracking async without awaiting
-                trackClick(link.title, link.url, group.title)
-                window.open(link.url, "_blank", "noopener,noreferrer")
+                trackClick(social.name, social.url, "Social")
+                window.open(social.url, "_blank", "noopener,noreferrer")
               }}
             >
               {getIcon(social.icon, "w-5 h-5")}
