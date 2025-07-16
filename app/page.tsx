@@ -65,7 +65,7 @@ export default function ProfilePage() {
                       }`}
                       onClick={async (e) => {
                         e.preventDefault()
-                        await trackClick(link.title, link.url, group.title)
+                        trackClick(link.title, link.url, group.title)
                         window.open(link.url, "_blank", "noopener,noreferrer")
                       }}
                     >
