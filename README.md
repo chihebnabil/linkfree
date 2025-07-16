@@ -2,7 +2,7 @@
 
 A modern, customizable linktree alternative built with Next.js, perfect for developers and creators to showcase their projects, social links, and professional information.
 
-## ✨ Features
+## Features
 
 - Modern UI with dark/light theme support
 - Built-in analytics with click tracking
@@ -12,7 +12,7 @@ A modern, customizable linktree alternative built with Next.js, perfect for deve
 - Click tracking for all links
 - Analytics dashboard with insights
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -158,7 +158,7 @@ The project uses Tailwind CSS with shadcn/ui components. Customize:
 - Global styles in `app/globals.css`
 - Component styles by editing individual components
 
-## 🗄️ Database Schema
+## Database Schema
 
 The application creates the following table:
 
@@ -176,7 +176,7 @@ link_clicks (
 )
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 
@@ -198,7 +198,7 @@ The app works on any platform supporting Next.js:
 - DigitalOcean App Platform
 - AWS Amplify
 
-## 🔧 Environment Variables
+## Environment Variables
 
 | Variable | Description | Required |
 |----------|-------------|----------|
@@ -206,7 +206,7 @@ The app works on any platform supporting Next.js:
 | `ANALYTICS_PASSWORD` | Password for analytics dashboard | Yes |
 | `NEXT_PUBLIC_SITE_URL` | Your domain URL | No |
 
-## 📈 Analytics Features
+## Analytics Features
 
 - **Click Tracking**: Automatic tracking of all link clicks
 - **Session Management**: Unique visitor identification
@@ -214,7 +214,7 @@ The app works on any platform supporting Next.js:
 - **Trend Analysis**: Daily click patterns
 - **Group Analytics**: Performance by link categories
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -222,7 +222,7 @@ The app works on any platform supporting Next.js:
 4. Test thoroughly
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
