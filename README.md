@@ -180,6 +180,11 @@ link_clicks (
 
 ### Vercel (Recommended)
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree&env=DATABASE_URL,ANALYTICS_PASSWORD&envDescription=Required%20environment%20variables%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree%23-environment-variables&project-name=my-developer-linktree&repository-name=my-developer-linktree)
+
+**One-click deployment:** Click the button above to deploy directly to Vercel with pre-configured environment variables.
+
+**Manual deployment:**
 1. Push your code to GitHub
 2. Connect your repository to [Vercel](https://vercel.com)
 3. Add environment variables in Vercel dashboard
