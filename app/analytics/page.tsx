@@ -20,6 +20,10 @@ interface AnalyticsData {
     date: string
     clicks: number
   }>
+  countryBreakdown: Array<{ country: string; clicks: number }>
+  regionBreakdown: Array<{ region: string; clicks: number }>
+  deviceTypeBreakdown: Array<{ device_type: string; clicks: number }>
+  referrerBreakdown: Array<{ referrer: string; clicks: number }>
 }
 
 export default function AnalyticsPage() {
@@ -88,6 +92,7 @@ export default function AnalyticsPage() {
     )
   }
 
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 p-4">
       <div className="max-w-6xl mx-auto">
@@ -153,6 +158,70 @@ export default function AnalyticsPage() {
                 </div>
                 <BarChart3 className="w-8 h-8 text-orange-600" />
               </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* New Analytics: Country, Region, Device, Referrer */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Top Countries</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-1">
+                {data.countryBreakdown.map((item, idx) => (
+                  <li key={idx} className="flex justify-between">
+                    <span>{item.country || 'Unknown'}</span>
+                    <span className="font-semibold">{item.clicks}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Top Regions</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-1">
+                {data.regionBreakdown.map((item, idx) => (
+                  <li key={idx} className="flex justify-between">
+                    <span>{item.region || 'Unknown'}</span>
+                    <span className="font-semibold">{item.clicks}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Device Types</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-1">
+                {data.deviceTypeBreakdown.map((item, idx) => (
+                  <li key={idx} className="flex justify-between">
+                    <span>{item.device_type || 'Unknown'}</span>
+                    <span className="font-semibold">{item.clicks}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Top Referrers</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-1">
+                {data.referrerBreakdown.map((item, idx) => (
+                  <li key={idx} className="flex justify-between">
+                    <span className="truncate max-w-[120px]" title={item.referrer}>{item.referrer || 'Direct'}</span>
+                    <span className="font-semibold">{item.clicks}</span>
+                  </li>
+                ))}
+              </ul>
             </CardContent>
           </Card>
         </div>

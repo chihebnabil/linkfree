@@ -1,10 +1,12 @@
 "use client"
 
+import { useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink } from "lucide-react"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { ExternalLink, ChevronDown, ChevronRight } from "lucide-react"
 import { getIcon } from "@/lib/icons"
 import profileData from "@/data/profile.json"
 import { useClickTracking } from "@/hooks/use-click-tracking"
@@ -12,6 +14,24 @@ import { useClickTracking } from "@/hooks/use-click-tracking"
 export default function ProfilePage() {
   const { profile, linkGroups, socialLinks, footer } = profileData
   const { trackClick } = useClickTracking()
+  
+  // State to manage which groups are open (by default, all are open)
+  const [openGroups, setOpenGroups] = useState<{ [key: number]: boolean }>(
+    linkGroups.reduce((acc, _, index) => ({ ...acc, [index]: true }), {})
+  )
+
+  const toggleGroup = (groupIndex: number) => {
+    setOpenGroups(prev => ({
+      ...prev,
+      [groupIndex]: !prev[groupIndex]
+    }))
+  }
+
+  const toggleAllGroups = () => {
+    const allOpen = Object.values(openGroups).every(Boolean)
+    const newState = linkGroups.reduce((acc, _, index) => ({ ...acc, [index]: !allOpen }), {})
+    setOpenGroups(newState)
+  }
 
   // Generate initials from name
   const getInitials = (name: string) => {
@@ -48,67 +68,120 @@ export default function ProfilePage() {
         </div>
 
         {/* Links Section */}
-        <div className="space-y-6 mb-8">
-          {linkGroups.map((group, groupIndex) => (
-            <div key={groupIndex}>
-              <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3 px-1 uppercase tracking-wide">
-                {group.title}
-              </h2>
-              <div className="space-y-3">
-                {group.links.map((link, linkIndex) => (
-                  <div key={linkIndex}>
-                    <Card
-                      className={`transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer ${
-                        link.featured
-                          ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white border-0"
-                          : "hover:bg-slate-50 dark:hover:bg-slate-800"
-                      }`}
-                      onClick={async (e) => {
-                        e.preventDefault()
-                        await trackClick(link.title, link.url, group.title)
-                        window.open(link.url, "_blank", "noopener,noreferrer")
-                      }}
-                    >
-                      <CardContent className="p-4">
+        <div className="mb-8">
+          {/* Toggle All Button */}
+          <div className="flex justify-end mb-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleAllGroups}
+              className="text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+            >
+              {Object.values(openGroups).every(Boolean) ? "Collapse All" : "Expand All"}
+            </Button>
+          </div>
+          
+          <div className="space-y-4">
+            {linkGroups.map((group, groupIndex) => (
+              <Collapsible
+                key={groupIndex}
+                open={openGroups[groupIndex]}
+                onOpenChange={() => toggleGroup(groupIndex)}
+              >
+                <Card className="overflow-hidden transition-all duration-200 hover:shadow-sm">
+                  <CollapsibleTrigger className="w-full">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
-                          <div
-                            className={`flex-shrink-0 ${
-                              link.featured ? "text-white" : "text-slate-600 dark:text-slate-400"
-                            }`}
-                          >
-                            {getIcon(link.icon, "w-5 h-5")}
+                          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-sm font-bold">
+                              {group.links.length}
+                            </span>
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center justify-between">
-                              <h3
-                                className={`font-semibold text-sm ${
-                                  link.featured ? "text-white" : "text-slate-900 dark:text-slate-100"
-                                }`}
-                              >
-                                {link.title}
-                              </h3>
-                              <ExternalLink
-                                className={`w-4 h-4 flex-shrink-0 ml-2 ${
-                                  link.featured ? "text-white" : "text-slate-400"
-                                }`}
-                              />
-                            </div>
-                            <p
-                              className={`text-xs mt-1 ${
-                                link.featured ? "text-blue-100" : "text-slate-500 dark:text-slate-400"
-                              }`}
-                            >
-                              {link.description}
+                          <div className="text-left">
+                            <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                              {group.title}
+                            </h2>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">
+                              {group.links.length} {group.links.length === 1 ? 'link' : 'links'}
                             </p>
                           </div>
                         </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+                        <div className="flex items-center space-x-2">
+                          {/* Show featured badge if group has featured links */}
+                          {group.links.some(link => link.featured) && (
+                            <Badge variant="secondary" className="text-xs">
+                              Featured
+                            </Badge>
+                          )}
+                          {openGroups[groupIndex] ? (
+                            <ChevronDown className="w-4 h-4 text-slate-400 transition-transform duration-200" />
+                          ) : (
+                            <ChevronRight className="w-4 h-4 text-slate-400 transition-transform duration-200" />
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </CollapsibleTrigger>
+                  
+                  <CollapsibleContent className="transition-all duration-200 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+                    <div className="px-4 pb-4 space-y-3">
+                      {group.links.map((link, linkIndex) => (
+                        <Card
+                          key={linkIndex}
+                          className={`transition-all duration-200 hover:scale-[1.02] hover:shadow-md cursor-pointer border-0 ${
+                            link.featured
+                              ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+                              : "bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700"
+                          }`}
+                          onClick={async (e) => {
+                            e.preventDefault()
+                            await trackClick(link.title, link.url, group.title)
+                            window.open(link.url, "_blank", "noopener,noreferrer")
+                          }}
+                        >
+                          <CardContent className="p-4">
+                            <div className="flex items-center space-x-3">
+                              <div
+                                className={`flex-shrink-0 ${
+                                  link.featured ? "text-white" : "text-slate-600 dark:text-slate-400"
+                                }`}
+                              >
+                                {getIcon(link.icon, "w-5 h-5")}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between">
+                                  <h3
+                                    className={`font-semibold text-sm ${
+                                      link.featured ? "text-white" : "text-slate-900 dark:text-slate-100"
+                                    }`}
+                                  >
+                                    {link.title}
+                                  </h3>
+                                  <ExternalLink
+                                    className={`w-4 h-4 flex-shrink-0 ml-2 ${
+                                      link.featured ? "text-white" : "text-slate-400"
+                                    }`}
+                                  />
+                                </div>
+                                <p
+                                  className={`text-xs mt-1 ${
+                                    link.featured ? "text-blue-100" : "text-slate-500 dark:text-slate-400"
+                                  }`}
+                                >
+                                  {link.description}
+                                </p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </CollapsibleContent>
+                </Card>
+              </Collapsible>
+            ))}
+          </div>
         </div>
 
         {/* Social Links */}

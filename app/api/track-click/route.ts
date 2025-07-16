@@ -1,5 +1,6 @@
 import { neon } from "@neondatabase/serverless"
 import { type NextRequest, NextResponse } from "next/server"
+import fetch from "node-fetch"
 
 const sql = neon(process.env.DATABASE_URL!)
 
@@ -15,7 +16,26 @@ export async function POST(request: NextRequest) {
     const realIp = request.headers.get("x-real-ip")
     const ipAddress = forwardedFor?.split(",")[0] || realIp || "127.0.0.1"
 
-    // Insert click record
+
+    // Get geolocation info
+    let country = null
+    let region = null
+    try {
+      const geoRes = await fetch(`https://ipapi.co/${ipAddress}/json/`)
+      if (geoRes.ok) {
+        const geo = await geoRes.json()
+        country = geo.country_name || null
+        region = geo.region || null
+      }
+    } catch {}
+
+    // Device type detection
+    let deviceType = "desktop"
+    if (/Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(userAgent)) {
+      deviceType = "mobile"
+    }
+
+    // Insert click record with new fields
     await sql`
       INSERT INTO link_clicks (
         link_title, 
@@ -24,6 +44,9 @@ export async function POST(request: NextRequest) {
         user_agent, 
         ip_address, 
         referrer, 
+        country,
+        region,
+        device_type,
         session_id
       ) VALUES (
         ${linkTitle}, 
@@ -32,6 +55,9 @@ export async function POST(request: NextRequest) {
         ${userAgent}, 
         ${ipAddress}, 
         ${referrer}, 
+        ${country},
+        ${region},
+        ${deviceType},
         ${sessionId}
       )
     `

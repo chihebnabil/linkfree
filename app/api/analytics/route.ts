@@ -15,13 +15,8 @@ export async function GET() {
     }
 
     // Get overall stats
-    const totalClicks = await sql`
-      SELECT COUNT(*) as count FROM link_clicks
-    `
-
-    const uniqueVisitors = await sql`
-      SELECT COUNT(DISTINCT session_id) as count FROM link_clicks
-    `
+    const totalClicks = await sql`SELECT COUNT(*) as count FROM link_clicks`
+    const uniqueVisitors = await sql`SELECT COUNT(DISTINCT session_id) as count FROM link_clicks`
 
     // Get top links
     const topLinks = await sql`
@@ -47,11 +42,54 @@ export async function GET() {
       ORDER BY date DESC
     `
 
+    // Get country breakdown
+    const countryBreakdown = await sql`
+      SELECT country, COUNT(*) as clicks
+      FROM link_clicks
+      WHERE country IS NOT NULL
+      GROUP BY country
+      ORDER BY clicks DESC
+      LIMIT 10
+    `
+
+    // Get region breakdown
+    const regionBreakdown = await sql`
+      SELECT region, COUNT(*) as clicks
+      FROM link_clicks
+      WHERE region IS NOT NULL
+      GROUP BY region
+      ORDER BY clicks DESC
+      LIMIT 10
+    `
+
+    // Get device type breakdown
+    const deviceTypeBreakdown = await sql`
+      SELECT device_type, COUNT(*) as clicks
+      FROM link_clicks
+      WHERE device_type IS NOT NULL
+      GROUP BY device_type
+      ORDER BY clicks DESC
+    `
+
+    // Get referrer breakdown
+    const referrerBreakdown = await sql`
+      SELECT referrer, COUNT(*) as clicks
+      FROM link_clicks
+      WHERE referrer IS NOT NULL AND referrer != ''
+      GROUP BY referrer
+      ORDER BY clicks DESC
+      LIMIT 10
+    `
+
     return NextResponse.json({
       totalClicks: totalClicks[0]?.count || 0,
       uniqueVisitors: uniqueVisitors[0]?.count || 0,
       topLinks,
       recentActivity,
+      countryBreakdown,
+      regionBreakdown,
+      deviceTypeBreakdown,
+      referrerBreakdown,
     })
   } catch (error) {
     console.error("Error fetching analytics:", error)

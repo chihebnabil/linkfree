@@ -7,6 +7,9 @@ CREATE TABLE IF NOT EXISTS link_clicks (
   user_agent TEXT,
   ip_address INET,
   referrer TEXT,
+  country VARCHAR(100),
+  region VARCHAR(100),
+  device_type VARCHAR(20),
   clicked_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   session_id VARCHAR(255)
 );
