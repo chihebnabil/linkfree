@@ -2,6 +2,8 @@
 
 A modern, customizable linktree alternative built with Next.js, perfect for developers and creators to showcase their projects, social links, and professional information.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree&env=DATABASE_URL,ANALYTICS_PASSWORD&envDescription=Required%20environment%20variables%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree%23-environment-variables&project-name=my-developer-linktree&repository-name=my-developer-linktree)
+
 ## Features
 
 - Modern UI with dark/light theme support
