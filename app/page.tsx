@@ -121,8 +121,9 @@ export default function ProfilePage() {
               className="w-12 h-12 rounded-full hover:scale-110 transition-transform duration-200 bg-transparent"
               onClick={async (e) => {
                 e.preventDefault()
-                await trackClick(social.name, social.url, "Social")
-                window.open(social.url, "_blank", "noopener,noreferrer")
+                // Fire tracking async without awaiting
+                trackClick(link.title, link.url, group.title)
+                window.open(link.url, "_blank", "noopener,noreferrer")
               }}
             >
               {getIcon(social.icon, "w-5 h-5")}
