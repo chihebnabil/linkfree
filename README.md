@@ -4,6 +4,8 @@ A modern, customizable linktree alternative built with Next.js, perfect for deve
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree&env=DATABASE_URL,ANALYTICS_PASSWORD&envDescription=Required%20environment%20variables%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree%23-environment-variables&project-name=my-developer-linktree&repository-name=my-developer-linktree)
 
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/chihebnabil/linkfree)
+
 ## Features
 
 - Modern UI with dark/light theme support
@@ -180,11 +182,15 @@ link_clicks (
 
 ## Deployment
 
-### Vercel (Recommended)
+### One-Click Deployment
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree&env=DATABASE_URL,ANALYTICS_PASSWORD&envDescription=Required%20environment%20variables%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree%23-environment-variables&project-name=my-developer-linktree&repository-name=my-developer-linktree)
 
-**One-click deployment:** Click the button above to deploy directly to Vercel with pre-configured environment variables.
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/chihebnabil/linkfree)
+
+**One-click deployment:** Click either button above to deploy directly with pre-configured settings (make sure to set the env var).
+
+### Vercel (Recommended)
 
 **Manual deployment:**
 1. Push your code to GitHub
@@ -229,7 +235,7 @@ The app works on any platform supporting Next.js:
 This project is open source and available under the [MIT License](LICENSE).
 
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Built with:
 - [Next.js](https://nextjs.org) - React framework
