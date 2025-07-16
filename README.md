@@ -1,6 +1,6 @@
 # Developer Linktree
 
-A modern, customizable linktree application built with Next.js, perfect for developers and creators to showcase their projects, social links, and professional information.
+A modern, customizable linktree alternative built with Next.js, perfect for developers and creators to showcase their projects, social links, and professional information.
 
 ## ✨ Features
 
@@ -23,8 +23,8 @@ A modern, customizable linktree application built with Next.js, perfect for deve
 ### 1. Clone and Install
 
 ```bash
-git clone <your-repo-url>
-cd developer-linktree
+git clone https://github.com/chihebnabil/linkfree
+cd linkfree
 pnpm install
 ```
 
