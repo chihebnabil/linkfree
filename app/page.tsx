@@ -136,7 +136,7 @@ export default function ProfilePage() {
                           }`}
                           onClick={async (e) => {
                             e.preventDefault()
-                            await trackClick(link.title, link.url, group.title)
+                            trackClick(link.title, link.url, group.title)
                             window.open(link.url, "_blank", "noopener,noreferrer")
                           }}
                         >
@@ -194,7 +194,8 @@ export default function ProfilePage() {
               className="w-12 h-12 rounded-full hover:scale-110 transition-transform duration-200 bg-transparent"
               onClick={async (e) => {
                 e.preventDefault()
-                await trackClick(social.name, social.url, "Social")
+                // Fire tracking async without awaiting
+                trackClick(social.name, social.url, "Social")
                 window.open(social.url, "_blank", "noopener,noreferrer")
               }}
             >
