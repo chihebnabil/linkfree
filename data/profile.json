@@ -10,18 +10,25 @@
       "title": "Projects & Products",
       "links": [
         {
+          "title": "PGH",
+          "description": "Validate your SaaS ideas before writing a single line of code.",
+          "url": "https://productgaphunt.com/",
+          "icon": "Check",
+          "featured": true
+        },
+        {
           "title": "GitMatcher",
           "description": "AI-powered GitHub talent discovery. Find real devs by real commits.",
           "url": "https://gitmatcher.com",
           "icon": "Users",
-          "featured": true
+          "featured": false
         },
         {
           "title": "MyDevMentor",
           "description": "1:1 mentorship to help junior developers level up and land jobs.",
           "url": "https://mydevmentor.com",
           "icon": "GraduationCap",
-          "featured": true
+          "featured": false
         },
         {
           "title": "next-lovable",
