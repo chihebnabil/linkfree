@@ -34,7 +34,8 @@
           "title": "next-lovable",
           "description": "CLI tool to convert Lovable React projects into full-stack Next.js apps.",
           "url": "https://nextlovable.com",
-          "icon": "Zap"
+          "icon": "Zap",
+          "featured": true
         },
         {
           "title": "Claude UI",
