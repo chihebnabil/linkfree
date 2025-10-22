@@ -38,6 +38,13 @@
           "featured": true
         },
         {
+          "title": "AskDesk",
+          "description": "Raycast for windows",
+          "url": "https://getaskdesk.com",
+          "icon": "Keyboard",
+          "featured": true
+        },
+        {
           "title": "Claude UI",
           "description": "Experimenting with LLMs and UI tools",
           "url": "https://claudeui.com",
