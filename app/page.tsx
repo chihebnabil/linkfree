@@ -15,11 +15,12 @@ export default function ProfilePage() {
   const { profile, linkGroups, socialLinks, footer } = profileData
   const { trackClick } = useClickTracking()
   
-  // State to manage which groups are open (by default, all are open)
+  // State management: Track which link groups are expanded
   const [openGroups, setOpenGroups] = useState<{ [key: number]: boolean }>(
     linkGroups.reduce((acc, _, index) => ({ ...acc, [index]: true }), {})
   )
 
+  // Toggle individual group
   const toggleGroup = (groupIndex: number) => {
     setOpenGroups(prev => ({
       ...prev,
@@ -27,13 +28,17 @@ export default function ProfilePage() {
     }))
   }
 
+  // Toggle all groups at once
   const toggleAllGroups = () => {
     const allOpen = Object.values(openGroups).every(Boolean)
-    const newState = linkGroups.reduce((acc, _, index) => ({ ...acc, [index]: !allOpen }), {})
+    const newState = linkGroups.reduce(
+      (acc, _, index) => ({ ...acc, [index]: !allOpen }), 
+      {}
+    )
     setOpenGroups(newState)
   }
 
-  // Generate initials from name
+  // Helper: Generate user initials for avatar fallback
   const getInitials = (name: string) => {
     return name
       .split(" ")
@@ -42,65 +47,87 @@ export default function ProfilePage() {
       .toUpperCase()
   }
 
+  // Helper: Handle link clicks with tracking
+  const handleLinkClick = (title: string, url: string, category: string) => {
+    trackClick(title, url, category)
+    window.open(url, "_blank", "noopener,noreferrer")
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 dark:from-slate-950 dark:via-purple-950 dark:to-slate-950 relative overflow-hidden">
-      {/* Animated background elements */}
+      
+      {/* ===== Animated Background Blobs ===== */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-violet-500 dark:bg-violet-600 rounded-full mix-blend-screen dark:mix-blend-soft-light filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-fuchsia-500 dark:bg-fuchsia-600 rounded-full mix-blend-screen dark:mix-blend-soft-light filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500 dark:bg-cyan-600 rounded-full mix-blend-screen dark:mix-blend-soft-light filter blur-3xl opacity-15 animate-blob animation-delay-4000"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-violet-500 dark:bg-violet-600 rounded-full mix-blend-screen dark:mix-blend-soft-light filter blur-3xl opacity-20 animate-blob" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-fuchsia-500 dark:bg-fuchsia-600 rounded-full mix-blend-screen dark:mix-blend-soft-light filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500 dark:bg-cyan-600 rounded-full mix-blend-screen dark:mix-blend-soft-light filter blur-3xl opacity-15 animate-blob animation-delay-4000" />
       </div>
 
+      {/* ===== Main Content Container ===== */}
       <div className="container max-w-2xl mx-auto px-4 py-12 relative z-10">
-        {/* Profile Section */}
-        <div className="text-center mb-12 animate-fade-in">
+        
+        {/* ===== Profile Header Section ===== */}
+        <section className="text-center mb-12 animate-fade-in">
+          
+          {/* Avatar with badge */}
           <div className="relative inline-block mb-6">
             <Avatar className="w-32 h-32 mx-auto ring-4 ring-violet-500/30 dark:ring-fuchsia-500/30 shadow-2xl shadow-violet-500/20 transition-transform hover:scale-105 duration-300">
-              <AvatarImage src={profile.avatar || "/placeholder.svg"} alt="Profile" />
+              <AvatarImage 
+                src={profile.avatar || "/placeholder.svg"} 
+                alt={`${profile.name} profile picture`} 
+              />
               <AvatarFallback className="text-3xl font-bold bg-gradient-to-br from-violet-600 via-fuchsia-600 to-pink-600 text-white">
                 {getInitials(profile.name)}
               </AvatarFallback>
             </Avatar>
+            
+            {/* Sparkles badge */}
             <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-full p-2 shadow-lg shadow-fuchsia-500/50">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
           </div>
 
+          {/* Name */}
           <h1 className="text-4xl font-bold bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent mb-4 tracking-tight">
             {profile.name}
           </h1>
 
+          {/* Skill badges */}
           <div className="flex flex-wrap justify-center gap-2 mb-6">
             {profile.badges.map((badge, index) => (
               <Badge 
                 key={index} 
                 variant="secondary" 
-                className="text-xs px-3 py-1 bg-slate-800/60 dark:bg-slate-800/60 backdrop-blur-sm border border-violet-500/30 dark:border-violet-500/30 hover:scale-105 transition-transform duration-200 text-slate-200"
+                className="text-xs px-3 py-1 bg-slate-800/60 backdrop-blur-sm border border-violet-500/30 hover:scale-105 transition-transform duration-200 text-slate-200"
               >
                 {badge}
               </Badge>
             ))}
           </div>
 
-          <p className="text-slate-300 dark:text-slate-300 text-base leading-relaxed max-w-2xl mx-auto font-medium">
+          {/* Bio */}
+          <p className="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto font-medium">
             {profile.bio}
           </p>
-        </div>
+        </section>
 
-        {/* Links Section */}
-        <div className="mb-12">
-          {/* Toggle All Button */}
+        
+        {/* ===== Link Groups Section ===== */}
+        <section className="mb-12">
+          
+          {/* Collapse/Expand all toggle */}
           <div className="flex justify-end mb-6">
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleAllGroups}
-              className="text-sm text-slate-400 hover:text-violet-400 dark:text-slate-400 dark:hover:text-violet-400 font-medium transition-colors duration-200"
+              className="text-sm text-slate-400 hover:text-violet-400 font-medium transition-colors duration-200"
             >
               {Object.values(openGroups).every(Boolean) ? "Collapse All" : "Expand All"}
             </Button>
           </div>
           
+          {/* Link groups list */}
           <div className="space-y-6">
             {linkGroups.map((group, groupIndex) => (
               <Collapsible
@@ -156,10 +183,9 @@ export default function ProfilePage() {
                               ? "bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-600 text-white border-0 shadow-lg shadow-fuchsia-500/30 hover:shadow-2xl hover:shadow-fuchsia-500/50"
                               : "bg-slate-800/40 dark:bg-slate-800/40 backdrop-blur-sm hover:bg-slate-800/60 dark:hover:bg-slate-800/60 border-slate-700/50 dark:border-slate-700/50 hover:border-violet-500/50 hover:shadow-lg hover:shadow-violet-500/10"
                           }`}
-                          onClick={async (e) => {
+                          onClick={(e) => {
                             e.preventDefault()
-                            trackClick(link.title, link.url, group.title)
-                            window.open(link.url, "_blank", "noopener,noreferrer")
+                            handleLinkClick(link.title, link.url, group.title)
                           }}
                         >
                           <CardContent className="p-5">
@@ -206,21 +232,19 @@ export default function ProfilePage() {
               </Collapsible>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Social Links */}
-        <div className="flex justify-center gap-4 mb-10">
+        {/* ===== Social Media Links ===== */}
+        <section className="flex justify-center gap-4 mb-10">
           {socialLinks.map((social, index) => (
             <Button
               key={index}
               variant="outline"
               size="icon"
               className="w-14 h-14 rounded-full hover:scale-110 transition-all duration-300 bg-slate-800/40 dark:bg-slate-900/40 backdrop-blur-md border-slate-700/50 dark:border-slate-700/50 hover:shadow-xl hover:shadow-violet-500/20 hover:bg-slate-800/60 dark:hover:bg-slate-900/60 hover:border-violet-500/50 dark:hover:border-violet-500/50 group"
-              onClick={async (e) => {
+              onClick={(e) => {
                 e.preventDefault()
-                // Fire tracking async without awaiting
-                trackClick(social.name, social.url, "Social")
-                window.open(social.url, "_blank", "noopener,noreferrer")
+                handleLinkClick(social.name, social.url, "Social")
               }}
             >
               <div className="text-slate-400 dark:text-slate-400 group-hover:text-violet-400 dark:group-hover:text-violet-400 transition-colors duration-300">
@@ -229,17 +253,16 @@ export default function ProfilePage() {
               <span className="sr-only">{social.name}</span>
             </Button>
           ))}
-        </div>
+        </section>
 
-        {/* Open Source CTA */}
-        <div className="flex justify-center mb-8">
+        {/* ===== Open Source CTA Button ===== */}
+        <section className="flex justify-center mb-8">
           <Button
             variant="outline"
             className="group bg-slate-800/40 dark:bg-slate-900/40 backdrop-blur-md border-slate-700/50 dark:border-slate-700/50 hover:bg-gradient-to-r hover:from-violet-600 hover:via-fuchsia-600 hover:to-pink-600 hover:border-0 transition-all duration-300 hover:shadow-xl hover:shadow-fuchsia-500/30"
-            onClick={async (e) => {
+            onClick={(e) => {
               e.preventDefault()
-              trackClick("Clone Project", "https://github.com/chihebnabil/linkfree", "Open Source")
-              window.open("https://github.com/chihebnabil/linkfree", "_blank", "noopener,noreferrer")
+              handleLinkClick("Clone Project", "https://github.com/chihebnabil/linkfree", "Open Source")
             }}
           >
             <div className="flex items-center gap-2">
@@ -250,12 +273,15 @@ export default function ProfilePage() {
               <Sparkles className="w-4 h-4 text-violet-400 group-hover:text-white transition-colors duration-300" />
             </div>
           </Button>
-        </div>
+        </section>
 
-        {/* Footer */}
-        <div className="text-center">
-          <p className="text-sm text-slate-400 dark:text-slate-400 font-medium">{footer.text}</p>
-        </div>
+        {/* ===== Footer ===== */}
+        <footer className="text-center">
+          <p className="text-sm text-slate-400 font-medium">
+            {footer.text}
+          </p>
+        </footer>
+        
       </div>
     </div>
   )
