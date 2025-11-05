@@ -231,6 +231,27 @@ export default function ProfilePage() {
           ))}
         </div>
 
+        {/* Open Source CTA */}
+        <div className="flex justify-center mb-8">
+          <Button
+            variant="outline"
+            className="group bg-slate-800/40 dark:bg-slate-900/40 backdrop-blur-md border-slate-700/50 dark:border-slate-700/50 hover:bg-gradient-to-r hover:from-violet-600 hover:via-fuchsia-600 hover:to-pink-600 hover:border-0 transition-all duration-300 hover:shadow-xl hover:shadow-fuchsia-500/30"
+            onClick={async (e) => {
+              e.preventDefault()
+              trackClick("Clone Project", "https://github.com/chihebnabil/linkfree", "Open Source")
+              window.open("https://github.com/chihebnabil/linkfree", "_blank", "noopener,noreferrer")
+            }}
+          >
+            <div className="flex items-center gap-2">
+              {getIcon("Github", "w-5 h-5 text-slate-400 group-hover:text-white transition-colors duration-300")}
+              <span className="font-semibold text-slate-200 group-hover:text-white transition-colors duration-300">
+                Clone this project
+              </span>
+              <Sparkles className="w-4 h-4 text-violet-400 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </Button>
+        </div>
+
         {/* Footer */}
         <div className="text-center">
           <p className="text-sm text-slate-400 dark:text-slate-400 font-medium">{footer.text}</p>
