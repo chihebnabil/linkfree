@@ -1,9 +1,14 @@
 {
   "profile": {
     "name": "Chiheb Nabil",
-    "avatar": "https://media.licdn.com/dms/image/v2/D4E03AQH8gamAwC4btw/profile-displayphoto-shrink_800_800/B4EZZTHVedHEAc-/0/1745151154634?e=1758153600&v=beta&t=i1TDxFuml1MZwd9PGLTfUSt45-TNMtci166GhlrwX44",
+    "avatar": "https://pbs.twimg.com/profile_images/1913950797634666496/x4AdUMwG_400x400.jpg",
     "bio": "Full-stack developer, indie maker, and mentor helping aspiring devs and founders ship meaningful software and learn faster 🚀",
-    "badges": ["Full Stack Developer", "Mentor", "Indie Maker", "PHP • Vue • Node.js"]
+    "badges": [
+      "Full Stack Developer",
+      "Mentor",
+      "Indie Maker",
+      "PHP • Vue • Node.js"
+    ]
   },
   "linkGroups": [
     {
@@ -56,16 +61,16 @@
       "title": "Published Work",
       "links": [
         {
-          "title": "The Art of Crafting AI Prompts",
-          "description": "Beginner-Friendly Prompt Engineering Guide on Amazon",
+          "title": "Inside Lovable: How AI App Builders Really Work (and How to Go Beyond Them)",
+          "description": "A practical guide to building apps with AI",
           "url": "https://www.amazon.fr/Art-Crafting-Prompts-Empowering-Conversations/dp/B0CCCX8MQB",
           "icon": "BookOpen"
         },
         {
           "title": "openai-api-mock",
           "description": "NPM package for mocking OpenAI API",
-          "url": "https://www.npmjs.com/package/openai-api-mock",
-          "icon": "Package"
+          "url": "https://www.amazon.com/dp/B0FY6XJ7X3",
+          "icon": "BookOpen"
         }
       ]
     },
