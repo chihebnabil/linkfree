@@ -14,11 +14,25 @@
     {
       "title": "Projects & Products",
       "links": [
+         {
+          "title": "next-lovable",
+          "description": "CLI tool to convert Lovable React projects into full-stack Next.js apps.",
+          "url": "https://nextlovable.com",
+          "icon": "Zap",
+          "featured": true
+        },
         {
           "title": "PGH",
           "description": "Validate your SaaS ideas before writing a single line of code.",
           "url": "https://productgaphunt.com/",
           "icon": "Check",
+          "featured": true
+        },
+        {
+          "title": "AskDesk",
+          "description": "Raycast for windows : Control Windows with AI & Voice",
+          "url": "https://getaskdesk.com",
+          "icon": "Keyboard",
           "featured": true
         },
         {
@@ -35,20 +49,8 @@
           "icon": "GraduationCap",
           "featured": false
         },
-        {
-          "title": "next-lovable",
-          "description": "CLI tool to convert Lovable React projects into full-stack Next.js apps.",
-          "url": "https://nextlovable.com",
-          "icon": "Zap",
-          "featured": true
-        },
-        {
-          "title": "AskDesk",
-          "description": "Raycast for windows",
-          "url": "https://getaskdesk.com",
-          "icon": "Keyboard",
-          "featured": true
-        },
+       
+        
         {
           "title": "Claude UI",
           "description": "Experimenting with LLMs and UI tools",
@@ -75,18 +77,7 @@
       ]
     },
     {
-      "title": "Development",
-      "links": [
-        {
-          "title": "GitHub Profile",
-          "description": "Open source projects and contributions",
-          "url": "https://github.com/chihebnabil",
-          "icon": "Github"
-        }
-      ]
-    },
-    {
-      "title": "Mentorship",
+      "title": "Let's Talk",
       "links": [
         {
           "title": "Book a Free Call",

@@ -1,4 +1,4 @@
-import { Github, Twitter, Linkedin, Mail, Globe, FileText, Code2, BookOpen, Coffee, ExternalLink, Check, Users, GraduationCap, Zap, Bot, Package, Calendar } from "lucide-react"
+import { Github, Twitter, Linkedin, Mail, Globe, FileText, Code2, BookOpen, Coffee, ExternalLink, Check, Users, GraduationCap, Zap, Bot, Package, Calendar, Keyboard } from "lucide-react"
 
 export const iconMap = {
   Github,
@@ -18,6 +18,7 @@ export const iconMap = {
   Bot,
   Package,
   Calendar,
+  Keyboard,
 }
 
 export function getIcon(iconName: string, className?: string) {
