@@ -61,15 +61,15 @@
       "title": "Published Work",
       "links": [
         {
-          "title": "Inside Lovable: How AI App Builders Really Work (and How to Go Beyond Them)",
-          "description": "A practical guide to building apps with AI",
+          "title": "The Art of Crafting AI Prompts",
+          "description": "Beginner-Friendly Prompt Engineering Guide on Amazon",
           "url": "https://www.amazon.fr/Art-Crafting-Prompts-Empowering-Conversations/dp/B0CCCX8MQB",
           "icon": "BookOpen"
         },
-        {
-          "title": "openai-api-mock",
-          "description": "NPM package for mocking OpenAI API",
-          "url": "https://www.amazon.com/dp/B0FY6XJ7X3",
+         {
+          "title": "Inside Lovable: How AI App Builders Really Work (and How to Go Beyond Them)",
+          "description": "A practical guide to building apps with AI",
+          "url": "https://www.amazon.fr/Art-Crafting-Prompts-Empowering-Conversations/dp/B0CCCX8MQB",
           "icon": "BookOpen"
         }
       ]
