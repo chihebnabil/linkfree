@@ -1,9 +1,10 @@
-import { Github, Twitter, Linkedin, Mail, Globe, FileText, Code2, BookOpen, Coffee, ExternalLink, Check, Users, GraduationCap, Zap, Bot, Package, Calendar, Keyboard } from "lucide-react"
+import { Github, Twitter, Linkedin, Mail, Globe, FileText, Code2, BookOpen, Coffee, ExternalLink, Check, Users, GraduationCap, Zap, Bot, Package, Calendar, Keyboard , GitFork } from "lucide-react"
 
 export const iconMap = {
   Github,
   Twitter,
   Linkedin,
+  GitFork,
   Mail,
   Globe,
   FileText,
