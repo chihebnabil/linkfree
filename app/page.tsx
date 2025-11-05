@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { ExternalLink, ChevronDown, ChevronRight, Sparkles } from "lucide-react"
+import { ExternalLink, ChevronDown, ChevronRight, Sparkles, GitFork } from "lucide-react"
 import { getIcon } from "@/lib/icons"
 import profileData from "@/data/profile.json"
 import { useClickTracking } from "@/hooks/use-click-tracking"
@@ -14,7 +14,7 @@ import { useClickTracking } from "@/hooks/use-click-tracking"
 export default function ProfilePage() {
   const { profile, linkGroups, socialLinks, footer } = profileData
   const { trackClick } = useClickTracking()
-  
+
   // State management: Track which link groups are expanded
   const [openGroups, setOpenGroups] = useState<{ [key: number]: boolean }>(
     linkGroups.reduce((acc, _, index) => ({ ...acc, [index]: true }), {})
@@ -32,7 +32,7 @@ export default function ProfilePage() {
   const toggleAllGroups = () => {
     const allOpen = Object.values(openGroups).every(Boolean)
     const newState = linkGroups.reduce(
-      (acc, _, index) => ({ ...acc, [index]: !allOpen }), 
+      (acc, _, index) => ({ ...acc, [index]: !allOpen }),
       {}
     )
     setOpenGroups(newState)
@@ -55,7 +55,7 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 dark:from-slate-950 dark:via-purple-950 dark:to-slate-950 relative overflow-hidden">
-      
+
       {/* ===== Animated Background Blobs ===== */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-violet-500 dark:bg-violet-600 rounded-full mix-blend-screen dark:mix-blend-soft-light filter blur-3xl opacity-20 animate-blob" />
@@ -65,22 +65,22 @@ export default function ProfilePage() {
 
       {/* ===== Main Content Container ===== */}
       <div className="container max-w-2xl mx-auto px-4 py-12 relative z-10">
-        
+
         {/* ===== Profile Header Section ===== */}
         <section className="text-center mb-12 animate-fade-in">
-          
+
           {/* Avatar with badge */}
           <div className="relative inline-block mb-6">
             <Avatar className="w-32 h-32 mx-auto ring-4 ring-violet-500/30 dark:ring-fuchsia-500/30 shadow-2xl shadow-violet-500/20 transition-transform hover:scale-105 duration-300">
-              <AvatarImage 
-                src={profile.avatar || "/placeholder.svg"} 
-                alt={`${profile.name} profile picture`} 
+              <AvatarImage
+                src={profile.avatar || "/placeholder.svg"}
+                alt={`${profile.name} profile picture`}
               />
               <AvatarFallback className="text-3xl font-bold bg-gradient-to-br from-violet-600 via-fuchsia-600 to-pink-600 text-white">
                 {getInitials(profile.name)}
               </AvatarFallback>
             </Avatar>
-            
+
             {/* Sparkles badge */}
             <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-full p-2 shadow-lg shadow-fuchsia-500/50">
               <Sparkles className="w-5 h-5 text-white" />
@@ -95,9 +95,9 @@ export default function ProfilePage() {
           {/* Skill badges */}
           <div className="flex flex-wrap justify-center gap-2 mb-6">
             {profile.badges.map((badge, index) => (
-              <Badge 
-                key={index} 
-                variant="secondary" 
+              <Badge
+                key={index}
+                variant="secondary"
                 className="text-xs px-3 py-1 bg-slate-800/60 backdrop-blur-sm border border-violet-500/30 hover:scale-105 transition-transform duration-200 text-slate-200"
               >
                 {badge}
@@ -111,10 +111,10 @@ export default function ProfilePage() {
           </p>
         </section>
 
-        
+
         {/* ===== Link Groups Section ===== */}
         <section className="mb-12">
-          
+
           {/* Collapse/Expand all toggle */}
           <div className="flex justify-end mb-6">
             <Button
@@ -126,7 +126,7 @@ export default function ProfilePage() {
               {Object.values(openGroups).every(Boolean) ? "Collapse All" : "Expand All"}
             </Button>
           </div>
-          
+
           {/* Link groups list */}
           <div className="space-y-6">
             {linkGroups.map((group, groupIndex) => (
@@ -172,17 +172,16 @@ export default function ProfilePage() {
                       </div>
                     </CardContent>
                   </CollapsibleTrigger>
-                  
+
                   <CollapsibleContent className="transition-all duration-300 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
                     <div className="px-5 pb-5 space-y-3">
                       {group.links.map((link, linkIndex) => (
                         <Card
                           key={linkIndex}
-                          className={`group/link transition-all duration-300 hover:scale-[1.02] cursor-pointer border ${
-                            link.featured
+                          className={`group/link transition-all duration-300 hover:scale-[1.02] cursor-pointer border ${link.featured
                               ? "bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-600 text-white border-0 shadow-lg shadow-fuchsia-500/30 hover:shadow-2xl hover:shadow-fuchsia-500/50"
                               : "bg-slate-800/40 dark:bg-slate-800/40 backdrop-blur-sm hover:bg-slate-800/60 dark:hover:bg-slate-800/60 border-slate-700/50 dark:border-slate-700/50 hover:border-violet-500/50 hover:shadow-lg hover:shadow-violet-500/10"
-                          }`}
+                            }`}
                           onClick={(e) => {
                             e.preventDefault()
                             handleLinkClick(link.title, link.url, group.title)
@@ -191,33 +190,29 @@ export default function ProfilePage() {
                           <CardContent className="p-5">
                             <div className="flex items-center space-x-4">
                               <div
-                                className={`flex-shrink-0 p-3 rounded-lg transition-all duration-300 ${
-                                  link.featured 
-                                    ? "bg-white/20 text-white group-hover/link:bg-white/30" 
+                                className={`flex-shrink-0 p-3 rounded-lg transition-all duration-300 ${link.featured
+                                    ? "bg-white/20 text-white group-hover/link:bg-white/30"
                                     : "bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 dark:from-violet-500/20 dark:to-fuchsia-500/20 text-violet-400 dark:text-violet-400 group-hover/link:scale-110 group-hover/link:from-violet-500/30 group-hover/link:to-fuchsia-500/30"
-                                }`}
+                                  }`}
                               >
                                 {getIcon(link.icon, "w-6 h-6")}
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between gap-3">
                                   <h3
-                                    className={`font-bold text-base ${
-                                      link.featured ? "text-white" : "text-slate-100 dark:text-slate-100"
-                                    }`}
+                                    className={`font-bold text-base ${link.featured ? "text-white" : "text-slate-100 dark:text-slate-100"
+                                      }`}
                                   >
                                     {link.title}
                                   </h3>
                                   <ExternalLink
-                                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 ${
-                                      link.featured ? "text-white/80" : "text-slate-400 dark:text-slate-500 group-hover/link:text-violet-400"
-                                    }`}
+                                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 ${link.featured ? "text-white/80" : "text-slate-400 dark:text-slate-500 group-hover/link:text-violet-400"
+                                      }`}
                                   />
                                 </div>
                                 <p
-                                  className={`text-sm mt-1.5 leading-relaxed ${
-                                    link.featured ? "text-white/90" : "text-slate-300 dark:text-slate-400"
-                                  }`}
+                                  className={`text-sm mt-1.5 leading-relaxed ${link.featured ? "text-white/90" : "text-slate-300 dark:text-slate-400"
+                                    }`}
                                 >
                                   {link.description}
                                 </p>
@@ -268,9 +263,9 @@ export default function ProfilePage() {
             <div className="flex items-center gap-2">
               {getIcon("Github", "w-5 h-5 text-slate-400 group-hover:text-white transition-colors duration-300")}
               <span className="font-semibold text-slate-200 group-hover:text-white transition-colors duration-300">
-                Clone this project
+                Fork LinkFree
               </span>
-              <Sparkles className="w-4 h-4 text-violet-400 group-hover:text-white transition-colors duration-300" />
+              <GitFork className="w-4 h-4 text-violet-400 group-hover:text-white transition-colors duration-300" />
             </div>
           </Button>
         </section>
@@ -281,7 +276,7 @@ export default function ProfilePage() {
             {footer.text}
           </p>
         </footer>
-        
+
       </div>
     </div>
   )
