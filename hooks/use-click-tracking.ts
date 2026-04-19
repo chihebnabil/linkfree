@@ -1,43 +1,21 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useCallback } from "react"
+import { usePostHog } from "posthog-js/react"
 
 export function useClickTracking() {
-  const [sessionId, setSessionId] = useState<string>("")
-
-  useEffect(() => {
-    // Generate or get session ID
-    let storedSessionId = localStorage.getItem("profile-session-id")
-    if (!storedSessionId) {
-      storedSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-      localStorage.setItem("profile-session-id", storedSessionId)
-    }
-    setSessionId(storedSessionId)
-  }, [])
+  const posthog = usePostHog()
 
   const trackClick = useCallback(
-    async (linkTitle: string, linkUrl: string, linkGroup: string) => {
-      if (!sessionId) return
-
-      try {
-        await fetch("/api/track-click", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            linkTitle,
-            linkUrl,
-            linkGroup,
-            sessionId,
-          }),
-        })
-      } catch (error) {
-        console.error("Failed to track click:", error)
-      }
+    (linkTitle: string, linkUrl: string, linkGroup: string) => {
+      posthog?.capture("link_clicked", {
+        link_title: linkTitle,
+        link_url: linkUrl,
+        link_group: linkGroup,
+      })
     },
-    [sessionId],
+    [posthog]
   )
 
-  return { trackClick, sessionId }
+  return { trackClick }
 }

@@ -2,19 +2,17 @@
 
 A modern, customizable linktree alternative built with Next.js, perfect for developers and creators to showcase their projects, social links, and professional information.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree&env=DATABASE_URL,ANALYTICS_PASSWORD&envDescription=Required%20environment%20variables%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree%23-environment-variables&project-name=my-developer-linktree&repository-name=my-developer-linktree)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree&env=NEXT_PUBLIC_POSTHOG_KEY&envDescription=Required%20environment%20variables%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree%23-environment-variables&project-name=my-developer-linktree&repository-name=my-developer-linktree)
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/chihebnabil/linkfree)
 
 ## Features
 
 - Modern UI with dark/light theme support
-- Built-in analytics with click tracking
-- Simple authentication for analytics dashboard
+- Built-in click tracking with PostHog
 - Fully responsive design
 - Fast performance with Next.js 15
 - Click tracking for all links
-- Analytics dashboard with insights
 
 ## Quick Start
 
@@ -37,28 +35,15 @@ pnpm install
 Create a `.env.local` file in the root directory:
 
 ```env
-# Database
-DATABASE_URL="postgresql://username:password@host:port/database?sslmode=require"
+# PostHog Analytics
+NEXT_PUBLIC_POSTHOG_KEY="phc_your_project_api_key"
+NEXT_PUBLIC_POSTHOG_HOST="https://us.i.posthog.com"  # optional, defaults to us.i.posthog.com
 
-# Analytics Authentication (set any secure password)
-ANALYTICS_PASSWORD="your_secure_password_here"
-
-# Optional: Analytics settings
+# Optional: Site settings
 NEXT_PUBLIC_SITE_URL="https://yourdomain.com"
 ```
 
-### 3. Database Setup
-
-Run the SQL script to create the necessary tables:
-
-```bash
-# Connect to your PostgreSQL database and execute:
-psql $DATABASE_URL -f scripts/001-create-clicks-table.sql
-```
-
-Or manually execute the SQL commands from `scripts/001-create-clicks-table.sql` in your database console.
-
-### 4. Customize Your Profile
+### 3. Customize Your Profile
 
 Edit `data/profile.json` to update your information:
 
@@ -102,33 +87,29 @@ pnpm dev
 
 Visit [http://localhost:3000](http://localhost:3000) to see your linktree!
 
-## 📊 Analytics Dashboard
+## 📊 Analytics
 
-Access analytics at `/analytics` and login with your `ANALYTICS_PASSWORD`.
+Analytics are powered by [PostHog](https://posthog.com). Link clicks are automatically tracked as custom events (`link_clicked`) with the following properties:
+- `link_title` — the title of the clicked link
+- `link_url` — the URL of the clicked link
+- `link_group` — the category/group the link belongs to
 
-The analytics dashboard provides:
-- Total clicks and unique visitors
-- Top performing links
-- Daily click trends
-- Link performance by group
+Set up a free PostHog account, grab your project API key, and add it to your environment variables.
 
 ## 📁 Project Structure
 
 ```
 ├── app/                    # Next.js app directory
-│   ├── analytics/          # Analytics dashboard pages
-│   ├── api/               # API routes (analytics, auth, tracking)
+│   ├── api/               # API routes
 │   └── page.tsx           # Main linktree page
 ├── components/            # React components
 │   ├── ui/               # Reusable UI components (shadcn/ui)
-│   └── analytics-login.tsx
+│   └── posthog-provider.tsx  # PostHog analytics provider
 ├── data/
 │   └── profile.json      # Your profile configuration
 ├── hooks/                # Custom React hooks
 ├── lib/                  # Utility functions and configurations
 ├── public/               # Static assets
-├── scripts/              # Database scripts
-│   └── 001-create-clicks-table.sql
 └── styles/               # Global styles
 ```
 
@@ -162,33 +143,15 @@ The project uses Tailwind CSS with shadcn/ui components. Customize:
 - Global styles in `app/globals.css`
 - Component styles by editing individual components
 
-## Database Schema
-
-The application creates the following table:
-
-```sql
-link_clicks (
-  id SERIAL PRIMARY KEY,
-  link_title VARCHAR(255) NOT NULL,
-  link_url TEXT NOT NULL,
-  link_group VARCHAR(100),
-  user_agent TEXT,
-  ip_address INET,
-  referrer TEXT,
-  clicked_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  session_id VARCHAR(255)
-)
-```
-
 ## Deployment
 
 ### One-Click Deployment
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree&env=DATABASE_URL,ANALYTICS_PASSWORD&envDescription=Required%20environment%20variables%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree%23-environment-variables&project-name=my-developer-linktree&repository-name=my-developer-linktree)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree&env=NEXT_PUBLIC_POSTHOG_KEY&envDescription=Required%20environment%20variables%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fchihebnabil%2Flinkfree%23-environment-variables&project-name=my-developer-linktree&repository-name=my-developer-linktree)
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/chihebnabil/linkfree)
 
-**One-click deployment:** Click either button above to deploy directly with pre-configured settings (make sure to set the env var).
+**One-click deployment:** Click either button above to deploy directly with pre-configured settings (make sure to set the `NEXT_PUBLIC_POSTHOG_KEY` env var).
 
 ### Vercel (Recommended)
 
@@ -210,17 +173,17 @@ The app works on any platform supporting Next.js:
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `DATABASE_URL` | PostgreSQL connection string | Yes |
-| `ANALYTICS_PASSWORD` | Password for analytics dashboard | Yes |
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NEXT_PUBLIC_POSTHOG_KEY` | PostHog project API key | Yes |
+| `NEXT_PUBLIC_POSTHOG_HOST` | PostHog API host (defaults to `https://us.i.posthog.com`) | No |
 | `NEXT_PUBLIC_SITE_URL` | Your domain URL | No |
 
 ## Analytics Features
 
-- **Click Tracking**: Automatic tracking of all link clicks
-- **Session Management**: Unique visitor identification
-- **Performance Metrics**: Total clicks, unique visitors, top links
-- **Trend Analysis**: Daily click patterns
-- **Group Analytics**: Performance by link categories
+- **Click Tracking**: Automatic tracking of all link clicks via PostHog
+- **PostHog Dashboard**: Use PostHog's built-in insights, funnels, and session replays
+- **Event Properties**: Each click includes link title, URL, and group for easy segmentation
 
 ## Contributing
 

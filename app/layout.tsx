@@ -3,6 +3,7 @@ import './globals.css'
 import profileData from '@/data/profile.json'
 import { ThemeProvider } from '@/components/theme-provider'
 import { StructuredData } from '@/components/structured-data'
+import { PostHogProvider } from '@/components/posthog-provider'
 
 // Generate comprehensive keywords from profile data
 const allKeywords = [
@@ -97,14 +98,16 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body className="antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <PostHogProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   )
