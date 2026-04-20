@@ -2,60 +2,38 @@
   "profile": {
     "name": "Chiheb Nabil",
     "avatar": "https://pbs.twimg.com/profile_images/1913950797634666496/x4AdUMwG_400x400.jpg",
-    "bio": "Full-stack developer, indie maker, and mentor helping aspiring devs and founders ship meaningful software and learn faster 🚀",
+    "bio": "I audit AI-built apps and rebuild them so they don't break in production. Next.js migration & emergency repair for vibe-coded projects.",
     "badges": [
       "Full Stack Developer",
-      "Mentor",
-      "Indie Maker",
-      "PHP • Vue • Node.js"
+      "App Auditor",
+      "Next.js • TypeScript",
+      "Indie Maker"
     ]
   },
   "linkGroups": [
     {
-      "title": "Projects & Products",
+      "title": "Services",
       "links": [
-         {
-          "title": "next-lovable",
-          "description": "Convert Lovable React projects into full-stack Next.js apps.",
+        {
+          "title": "nextlovable",
+          "description": "Stuck in Lovable? I migrate your React app to production-ready.",
           "url": "https://nextlovable.com",
           "icon": "Zap",
           "featured": true
         },
         {
-          "title": "PGH",
-          "description": "Validate your SaaS ideas before writing a single line of code.",
-          "url": "https://productgaphunt.com/",
-          "icon": "Check",
+          "title": "boltupgrade",
+          "description": "Emergency repair for Bolt.new apps that caught fire in production.",
+          "url": "https://boltupgrade.com",
+          "icon": "Zap",
           "featured": true
         },
         {
-          "title": "AskDesk",
-          "description": "Raycast for windows : Control Windows with AI & Voice",
-          "url": "https://getaskdesk.com",
-          "icon": "Keyboard",
+          "title": "Book a $149 Audit",
+          "description": "45-minute teardown. You'll know exactly what's broken and how to fix it.",
+          "url": "https://cal.com/chiheb-nabil/let-s-explore-how-we-can-help?overlayCalendar=true",
+          "icon": "Calendar",
           "featured": true
-        },
-        {
-          "title": "GitMatcher",
-          "description": "AI-powered GitHub talent discovery. Find real devs by real commits.",
-          "url": "https://gitmatcher.com",
-          "icon": "Users",
-          "featured": false
-        },
-        {
-          "title": "MyDevMentor",
-          "description": "1:1 mentorship to help junior developers level up and land jobs.",
-          "url": "https://mydevmentor.com",
-          "icon": "GraduationCap",
-          "featured": false
-        },
-       
-        
-        {
-          "title": "Claude UI",
-          "description": "Experimenting with LLMs and UI tools",
-          "url": "https://claudeui.com",
-          "icon": "Bot"
         }
       ]
     },
@@ -63,37 +41,15 @@
       "title": "Published Work",
       "links": [
         {
-          "title": "The Art of Crafting AI Prompts",
-          "description": "Beginner-Friendly Prompt Engineering Guide on Amazon",
+          "title": "Inside Lovable: How AI App Builders Really Work",
+          "description": "The technical deep dive on escaping no-code platforms.",
           "url": "https://www.amazon.fr/Art-Crafting-Prompts-Empowering-Conversations/dp/B0CCCX8MQB",
           "icon": "BookOpen"
-        },
-         {
-          "title": "Inside Lovable: How AI App Builders Really Work (and How to Go Beyond Them)",
-          "description": "A practical guide to building apps with AI",
-          "url": "https://www.amazon.fr/Art-Crafting-Prompts-Empowering-Conversations/dp/B0CCCX8MQB",
-          "icon": "BookOpen"
-        }
-      ]
-    },
-    {
-      "title": "Let's Talk",
-      "links": [
-        {
-          "title": "Book a Scoping Call",
-          "description": "Paid audit & scoping session for your next project",
-          "url": "https://cal.com/chiheb-nabil/let-s-explore-how-we-can-help?overlayCalendar=true",
-          "icon": "Calendar"
         }
       ]
     }
   ],
   "socialLinks": [
-    {
-      "name": "GitHub",
-      "url": "https://github.com/chihebnabil",
-      "icon": "Github"
-    },
     {
       "name": "X (Twitter)",
       "url": "https://x.com/NabilChiheb",
@@ -105,12 +61,17 @@
       "icon": "Linkedin"
     },
     {
+      "name": "GitHub",
+      "url": "https://github.com/chihebnabil",
+      "icon": "Github"
+    },
+    {
       "name": "Email",
       "url": "mailto:chiheb.design@gmail.com",
       "icon": "Mail"
     }
   ],
   "footer": {
-    "text": "Made with ❤️ using Next.js • Helping devs ship meaningful software"
+    "text": "Built with Next.js. Obviously not made in Lovable."
   }
 }
