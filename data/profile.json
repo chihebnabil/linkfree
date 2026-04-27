@@ -45,6 +45,12 @@
           "description": "The technical deep dive on escaping no-code platforms.",
           "url": "https://www.amazon.com/dp/B0FY6XJ7X3",
           "icon": "BookOpen"
+        },
+        {
+          "title": "The Art of Crafting AI Prompts: Empowering Human-AI Conversations",
+          "description": "Discover the step-by-step process of crafting effective prompts",
+          "url": "https://www.amazon.com/dp/B0CCMN63K2",
+          "icon": "BookOpen"
         }
       ]
     }
