@@ -29,6 +29,13 @@
           "featured": true
         },
         {
+          "title": "loopboard.dev",
+          "description": "The memory layer vibe-coded projects don't ship with.",
+          "url": "https://loopboard.dev",
+          "icon": "Zap",
+          "featured": true
+        },
+        {
           "title": "Book a $299 Audit",
           "description": "$299 audit. Applied to your migration if we move forward within 30 days. 45-minute teardown — you'll know exactly what's broken and how to fix it.",
           "url": "https://cal.com/chiheb-nabil/let-s-explore-how-we-can-help?overlayCalendar=true",
