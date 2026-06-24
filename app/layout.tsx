@@ -4,8 +4,6 @@ import profileData from "@/data/profile.json";
 import { ThemeProvider } from "@/components/theme-provider";
 import { StructuredData } from "@/components/structured-data";
 import { PostHogProvider } from "@/components/posthog-provider";
-import { flarelog } from "@flarelog/sdk";
-const logger = flarelog({}); // auto-detects FLARELOG_API_KEY
 
 // Generate comprehensive keywords from profile data
 const allKeywords = [
@@ -95,7 +93,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
