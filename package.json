@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@flarelog/sdk": "^2.1.0",
     "@hookform/resolvers": "^3.9.1",
     "@neondatabase/serverless": "latest",
     "@radix-ui/react-accordion": "1.2.2",

@@ -22,10 +22,10 @@
           "featured": true
         },
         {
-          "title": "boltupgrade",
-          "description": "Emergency repair for Bolt.new apps that caught fire in production.",
-          "url": "https://boltupgrade.com",
-          "icon": "Zap",
+          "title": "flarelog",
+          "description": "Debug your vibe-coded app in production with 2 lines of code.",
+          "url": "https://flarelog.dev/for/lovable",
+          "icon": "Bug",
           "featured": true
         },
         {
@@ -37,7 +37,7 @@
         },
         {
           "title": "Book a $299 Audit",
-          "description": "$299 audit. Applied to your migration if we move forward within 30 days. 45-minute teardown — you'll know exactly what's broken and how to fix it.",
+          "description": "Applied to your migration if we move forward within 30 days. 45-minute teardown — you'll know exactly what's broken and how to fix it.",
           "url": "https://cal.com/chiheb-nabil/let-s-explore-how-we-can-help?overlayCalendar=true",
           "icon": "Calendar",
           "featured": true
